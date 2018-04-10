@@ -1,0 +1,235 @@
+/*
+.glyphicon.glyphicon-comment {
+  font-size: 21px;
+  color: #777;
+}
+
+.glyphicon.glyphicon-thumbs-up {
+  font-size: 21px;
+  color: #777;
+}
+
+.glyphicon.glyphicon-thumbs-down {
+  font-size: 21px;
+  color: #777;
+}
+
+.glyphicon.glyphicon-edit {
+  font-size: 21px;
+  color: #777;
+}
+
+.glyphicon.glyphicon-remove-sign {
+  font-size: 21px;
+  color: #777;
+}
+*/
+
+
+
+
+.delete-icon {
+  display: inline-block;
+  width: 15px;
+	height: 15px;
+  background: transparent;
+  background-image: url('./icons/delete-circle.svg');
+  background-repeat: no-repeat;
+  font-size: 0;
+  margin-left:5px;
+  margin-top:10px;
+}
+
+.pencil-icon {
+  display: inline-block;
+  width: 18px;
+	height: 18px;
+  background: transparent;
+  background-image: url('./icons/pencil.svg');
+  background-repeat: no-repeat;
+  font-size: 0;
+  margin-left:5px;
+}
+
+.comments-icon {
+  display: inline-block;
+  width: 24px;
+	height: 24px;
+  background: transparent;
+  background-image: url('./icons/comments.svg');
+  background-position: 0px 1px;
+  background-repeat: no-repeat;
+  margin-left:5px;
+
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 2;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.badge-icon {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    background-color: #777;
+    border-radius: 10px;
+    margin-left:5px;
+
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;    
+}
+
+
+
+
+
+
+.icon-bar-item {
+  font-size: 21px;
+  color: #777;
+  margin-left: 5px;
+}
+
+.icon-bar {
+  text-align: right;
+  padding-left: 5px;  
+  padding-right: 5px;
+}
+
+.icon-bar-item-flip {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+  -webkit-transform: scale(-1, 1);
+  -moz-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
+.icon-button {
+  padding:0px;
+}
+/* 
+a:active, a:visited, 
+a:link, a:hover {
+  text-decoration: none;
+  background-color:pink;
+} */
+
+
+
+.postlisting-delete-icon-loc {
+  position: absolute;
+  right:-10px;
+  top:-20px;
+}
+
+.postlisting-heading {
+  padding-left: 10px;
+}
+
+.postlisting-image {
+  padding: 0px;
+  text-align: center;
+}
+
+
+
+
+
+.post-content-delete-icon-loc {
+  position: absolute;
+  right:-12px;
+  top:-22px;
+}
+
+/* .post-content-image {
+  float: left;
+  padding-right: 6px; 
+} */
+
+.post-content-heading {
+  padding-left: 5px;
+}
+
+/* .post-content-heading-row {
+  margin-bottom: 6px;
+}
+*/
+
+
+
+
+
+.post-comment-delete-icon-loc {
+  position: absolute;
+  right:4px;
+  top:-22px;
+}
+
+.post-comment-badge-icon {
+  margin-left: 10px;
+}
+
+.post-comment-image {
+  padding: 0px;
+  text-align: center;
+}
+
+.post-comment-heading {
+  padding-left: 10px;
+}
+
+.post-comment-icons {
+  text-align: right;
+}
+
+.post-comment-icon {
+  padding-left: 12px;
+}
+
+.post-comment-separator {
+  width: 75%;
+}
+
+
+
+
+
+
+
+.solid-thin-border {
+  border-style: solid;
+  border-width: 1px
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;  
+}
+
+.orange {
+  background-color: orangered;  
+}
+
+.grey {
+  background-color: rgb(151, 149, 149);  
+}
