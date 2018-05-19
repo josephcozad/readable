@@ -25,7 +25,35 @@
 }
 */
 
+/* 
+a:active, a:visited, 
+a:link, a:hover {
+  text-decoration: none;
+  background-color:pink;
+} */
 
+/* .post-content-image {
+  float: left;
+  padding-right: 6px; 
+} */
+
+/* .post-content-heading-row {
+  margin-bottom: 6px;
+}
+*/
+
+.modal-add-post {
+  width: 60vw;
+}
+
+.form-group {
+  margin-bottom: 0px;
+}
+
+.help-block {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
 
 
 .delete-icon {
@@ -116,12 +144,6 @@
 .icon-button {
   padding:0px;
 }
-/* 
-a:active, a:visited, 
-a:link, a:hover {
-  text-decoration: none;
-  background-color:pink;
-} */
 
 
 
@@ -150,19 +172,9 @@ a:link, a:hover {
   top:-22px;
 }
 
-/* .post-content-image {
-  float: left;
-  padding-right: 6px; 
-} */
-
 .post-content-heading {
   padding-left: 5px;
 }
-
-/* .post-content-heading-row {
-  margin-bottom: 6px;
-}
-*/
 
 
 
@@ -170,7 +182,7 @@ a:link, a:hover {
 
 .post-comment-delete-icon-loc {
   position: absolute;
-  right:4px;
+  right:-10px;
   top:-22px;
 }
 

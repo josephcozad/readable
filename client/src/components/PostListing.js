@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
-import { Grid, Row, Col, Panel, Image, OverlayTrigger, Glyphicon, Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Grid, Row, Col, Panel, Image, OverlayTrigger, Glyphicon } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import ArraySort from 'array-sort';
 
 import * as Utils from '../Utils';
 import * as ReadableApi from '../utils/Api';
@@ -11,21 +14,26 @@ class PostListing extends Component {
     state = {
         posts: []
     }
-    
-    
-    componentDidMount() {
 
-     //   console.log(this.props.routProps);
+    componentWillMount() {
+        const category = this.props.routeProps.match.params.category;
+        this.loadPosts(category);
+    }
 
-        const category = this.props.routProps.match.params.category;
+    componentWillReceiveProps(nextProps) {
+        const category = nextProps.routeProps.match.params.category;
+        this.loadPosts(category);
+    }
+
+    loadPosts(category) {
         if(category) {
             ReadableApi.getPostsByCategory(category).then((posts) => {
-                this.setState({ posts: posts });
+                this.setState({posts: posts});
             });
         }
         else {
             ReadableApi.getAllPosts().then((posts) => {
-                this.setState({ posts: posts });
+                this.setState({posts: posts});
             });
         }
     }
@@ -48,11 +56,21 @@ class PostListing extends Component {
         return(teaser);
     }
 
+    upVote(postId) {
+        ReadableApi.upVotePost(postId);
+    }
+
+    downVote(postId){
+        ReadableApi.downVotePost(postId);
+    }
+
+    deletePost(postId){
+        ReadableApi.deletePost(postId);
+    }
+
     formatPostContent = (post) => {
 
         const photoLocation = Utils.getPhotoLocation(post.title, 86);
-
-   //     console.log(post);
 
         return(
             <div key={post.id}>
@@ -73,27 +91,32 @@ class PostListing extends Component {
                                                 <span className={'comments-icon'}>{post.commentCount}</span>
                                             </OverlayTrigger>
 
-                                            <OverlayTrigger placement="top" overlay={Utils.tooltip('Delete Post')}>
+                                            <Link to={'#'} onClick={() => this.deletePost(post.id)}>
                                                 <span className={'delete-icon postlisting-delete-icon-loc'}></span>
-                                            </OverlayTrigger>                                            
+                                            </Link>                                   
                                         </Col>
                                     </Row>
+                                    <Row><Col sm={12}>By {post.author} on {Utils.formatTimeStamp(post.timestamp)}</Col></Row>
                                     <Row><Col sm={12}>{this.generateTeaserText(post.body)}</Col></Row>
                                     <Row>
-                                        <Col sm={9}>by {post.author} on {Utils.formatTimeStamp(post.timestamp)}</Col>
+                                        <Col sm={9}>&nbsp;</Col>
                                         <Col className="icon-bar" sm={3}>
                                             <OverlayTrigger placement="top" overlay={Utils.tooltip('Edit Posting')}>
-                                                <span className={'pencil-icon'}></span>
+                                                <Link to={`/${post.category}/${post.id}?edit=true`}>
+                                                    <span className={'pencil-icon'}></span>
+                                                </Link>                                                
                                             </OverlayTrigger>
                                             
                                             <OverlayTrigger placement="top" overlay={Utils.tooltip('Up Vote This')}>
-                                                <Button className={'icon-button'} bsStyle="link" onClick={Utils.upVote(post.id)}>
+                                                <Link to={'#'} onClick={() => this.upVote(post.id)}>
                                                     <Glyphicon className={'icon-bar-item'} glyph="thumbs-up" />
-                                                </Button>
+                                                </Link>
                                             </OverlayTrigger>
 
                                             <OverlayTrigger placement="top" overlay={Utils.tooltip('Down Vote This')}>
-                                                <Glyphicon className={'icon-bar-item icon-bar-item-flip'} glyph="thumbs-down" />
+                                                <Link to={'#'} onClick={() => this.downVote(post.id)}>
+                                                    <Glyphicon className={'icon-bar-item icon-bar-item-flip'} glyph="thumbs-down" />
+                                                </Link>
                                             </OverlayTrigger>
                                         </Col>
                                     </Row>
@@ -106,13 +129,43 @@ class PostListing extends Component {
         );
     }
 
-    render() {
+    getSortedPosts = () => {
         const posts = this.state.posts;
-   
+
+        let sortBy = this.props.sortBy;
+        if(sortBy) {
+            const asc = new RegExp('.asc$', 'i').test(sortBy);
+            sortBy = sortBy.substr(0, sortBy.lastIndexOf('.')) || sortBy;
+
+            switch(sortBy) {
+                case 'voteSort':
+                    return ArraySort(posts, 'voteScore', {reverse: !asc});
+                case 'authorSort':
+                    return ArraySort(posts, 'author', {reverse: !asc});
+                case 'dateSort':
+                    return ArraySort(posts, 'timestamp', {reverse: !asc});
+                default: // default sort by date from newest to oldest...
+                    return ArraySort(posts, 'timestamp', {reverse: true}); 
+            }
+        }
+        else {
+            if(posts) {
+                return ArraySort(posts, 'timestamp', {reverse: true});
+            }
+            else {
+                return posts;
+            }
+        }
+    }
+
+    render() {
+        
+        const posts = this.getSortedPosts();
+
         let postList = "";
 
         if(posts.length > 0) {
-            postList = this.state.posts.map((post, index, array) => {
+            postList = posts.map((post, index, array) => {
                 return (
                     this.formatPostContent(post)
                 )
@@ -127,8 +180,14 @@ class PostListing extends Component {
     }
 }
 
-// PostListing.propTypes = {
+PostListing.propTypes = {
+    sortBy: PropTypes.string,
+};
 
-// };
+const mapStateToProps = (state) => {
+	return({
+        sortBy: state.sortByKey,
+	});
+}
 
-export default PostListing;
+export default connect(mapStateToProps, { })(PostListing);

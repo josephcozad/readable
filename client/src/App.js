@@ -6,21 +6,10 @@ import { Route, Switch } from 'react-router-dom';
 
 import NavBar from './components/NavBar';
 import CategoryListing from './components/CategoryListing';
-import PostLayout from './components/PostLayout';
+import PostDetail from './components/PostDetail';
 import PostListing from './components/PostListing';
 
 class App extends Component {
-
-    state = {
-        commentFormOpen: false,
-        postFormOpen: false,
-        post: null,
-        comment: null
-    }
-
-    componentDidMount() {
-        console.log('here we are.... again.');
-    }
 
     render() {
 
@@ -28,8 +17,8 @@ class App extends Component {
             <Grid fluid={true}>
                 <Row>
                     <Col>
-                        <Route path="/:category?" render={(routProps) => (
-                            <NavBar routProps={routProps} />
+                        <Route path="/:category?" render={(routeProps) => (
+                            <NavBar routeProps={routeProps} />
                         )} />                          
                     </Col>
                 </Row>
@@ -37,11 +26,11 @@ class App extends Component {
                     <Col sm={1}>&nbsp;</Col>
                     <Col sm={8}>
                         <Switch>
-                            <Route path="/:category/:postId" render={(routProps) => (
-                                <PostLayout routProps={routProps} />
+                            <Route path="/:category/:postId" render={(routeProps) => (
+                                <PostDetail routeProps={routeProps} />
                             )}/>
-                            <Route path="/:category?" render={(routProps) => (
-                                <PostListing routProps={routProps} />
+                            <Route path="/:category?" render={(routeProps) => (
+                                <PostListing routeProps={routeProps} />
                             )} />                 
                         </Switch>
                     </Col>

@@ -1,17 +1,9 @@
 import React from 'react';
 
+//import * as ReadableApi from './utils/Api';
+
 import moment from 'moment';
 import { Tooltip } from 'react-bootstrap';
-
-export const upVote = (postId) => {
- //   console.log("UP VOTE: " + postId);
- //   alert('You voted!');
-}
-
-export const downVote = (postId) => {
-    console.log("DOWN VOTE: " + postId);
-//    alert('You voted!');
-}
 
 export const tooltip = (tip) => (
     <Tooltip id="tooltip">{tip}</Tooltip>
@@ -22,7 +14,7 @@ export const formatTimeStamp = (timestamp) => (
 );
 
 export const calculatePhotoIdFromText = (textValue, maxId) => {
-    let photoId = -1;
+    let photoId = 0;
     if(textValue) {
         photoId = textValue.split('').reduce((accumulator, currentValue) => {
             return(accumulator += currentValue.charCodeAt(0));
@@ -36,10 +28,36 @@ export const calculatePhotoIdFromText = (textValue, maxId) => {
 }
 
 export const getPhotoLocation = (textValue, size) => {
-    const photoId = calculatePhotoIdFromText(textValue, 1000);
+    const photoId = calculatePhotoIdFromText2(textValue, 1000);
     const photoLocation = `https://picsum.photos/${size}?image=${photoId}`;
     return photoLocation;
 }
+
+
+export const calculatePhotoIdFromText2 = (textValue, maxId) => {
+    let photoId = 0;
+    if(textValue) {
+        photoId = textValue.split('').reduce((accumulator, currentValue) => {
+            return(accumulator += currentValue.charCodeAt(0));
+        }, 0);
+
+        if(photoId > maxId) {
+            photoId = photoId % maxId;
+        }
+
+    //    const photoNotFound = ReadableApi.getPhotoLocation(photoId);
+     //   console.log('photoNotFound['+photoNotFound+']');
+        // if(photoNotFound) {
+        //     photoId = testPhotoId(photoId+1);
+        // }
+    }
+    return photoId;
+}
+
+
+//;
+
+
 
 export const getUserPhotoLocation = (username) => {
     const photoId = calculatePhotoIdFromText(username, 99);
