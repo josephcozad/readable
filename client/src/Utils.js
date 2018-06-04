@@ -54,11 +54,6 @@ export const calculatePhotoIdFromText2 = (textValue, maxId) => {
     return photoId;
 }
 
-
-//;
-
-
-
 export const getUserPhotoLocation = (username) => {
     const photoId = calculatePhotoIdFromText(username, 99);
 

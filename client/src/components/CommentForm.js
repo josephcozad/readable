@@ -136,7 +136,7 @@ class CommentForm extends Component {
         }
         else {
             photoLocation = Utils.getUserPhotoLocation(this.props.comment.author);
-            authorUIValue = `<b>${this.props.comment.author}</b> said  on ${Utils.formatTimeStamp(this.props.comment.timestamp)}:`;
+            authorUIValue =  `${this.props.comment.author} said  on ${Utils.formatTimeStamp(this.props.comment.timestamp)}:`;
         }
         
         return (
@@ -173,7 +173,7 @@ CommentForm.propTypes = {
     showCommentForm: PropTypes.func,
     addComment: PropTypes.func,
     updateComment: PropTypes.func,
-    postId: PropTypes.number, 
+    postId: PropTypes.string, 
     comment: PropTypes.object
 };
 

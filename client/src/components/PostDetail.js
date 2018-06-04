@@ -11,7 +11,7 @@ import PostForm from './PostForm';
 
 class PostDetail extends Component {
 
-    componentDidMount() {
+    componentDidMount() {    
         const {postId} = this.props.routeProps.match.params
         this.props.getPostDetail(postId);
     }

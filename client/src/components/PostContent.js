@@ -28,7 +28,7 @@ class PostContent extends Component {
 
         const post = this.props.post;
 
-        if(post.hasOwnProperty('title')) {
+        if(post && post.hasOwnProperty('title')) {
             let photoLocation = Utils.getPhotoLocation(post.title, 86);
 
             return (

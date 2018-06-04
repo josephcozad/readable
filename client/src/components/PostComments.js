@@ -17,8 +17,7 @@ class PostComments extends Component {
         }
 
         if(this.props.commentId && comment.id === this.props.commentId) {
-            let postId = this.props.postId;
-            return(<div key={comment.id}><CommentForm comment={comment} postId={postId} />{spacer}</div>);
+            return(<div key={comment.id}><CommentForm comment={comment} />{spacer}</div>);
         }
         else {
             return(<div key={comment.id}><Comment comment={comment} />{spacer}</div>);
@@ -30,7 +29,7 @@ class PostComments extends Component {
 
         let commentList = "";
 
-        if(comments.length > 0) {
+        if(comments && comments.length > 0) {
             commentList = comments.map((comment, index, array) => {
                 const addSpacer = index+1 < array.length ? true : false;
                 return (
@@ -63,8 +62,7 @@ PostComments.propTypes = {
 const mapStateToProps = (state) => {
 	return({
         comments: state.comments, 
-        commentId: state.commentId,
-        postId: state.post.id,
+        commentId: state.commentId
 	});
 }
 

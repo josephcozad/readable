@@ -77,7 +77,7 @@ Comment.propTypes = {
     voteOnComment: PropTypes.func,
     showCommentForm: PropTypes.func,
     deleteComment: PropTypes.func,
-    postId: PropTypes.number
+    postId: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
