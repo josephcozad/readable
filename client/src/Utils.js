@@ -13,6 +13,14 @@ export const formatTimeStamp = (timestamp) => (
     moment(timestamp).format("MMMM Do YYYY")
 );
 
+export const isEmpty = (obj) => {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
 export const calculatePhotoIdFromText = (textValue, maxId) => {
     let photoId = 0;
     if(textValue) {

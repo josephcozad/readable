@@ -40,7 +40,9 @@ class PostForm extends Component {
         
         let postId = null;
         let postInput = this.defaultState.input;
-        if(props.post.hasOwnProperty('title')) { // edit post...
+
+        const post = props.post;
+        if(post && post.hasOwnProperty('title')) { // edit post...
             postId = props.post.id;
             postInput.title.value = props.post.title;
             postInput.body.value = props.post.body;
@@ -137,6 +139,10 @@ class PostForm extends Component {
     render() {
 
         const post = this.props.post;
+        if(!post) {
+            return '';
+        }
+
         const {title, author, body, category} = this.state.input;
         const origTitle = post.title;
 
